@@ -1,0 +1,328 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://Gift.gd" type="Script" id=1]
+[ext_resource path="res://addons/gift/icon.png" type="Texture" id=2]
+[ext_resource path="res://Button.gd" type="Script" id=3]
+[ext_resource path="res://SeymourOne-Regular.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://ChatContainer.gd" type="Script" id=5]
+[ext_resource path="res://Node.gd" type="Script" id=6]
+[ext_resource path="res://Flag.gd" type="Script" id=7]
+[ext_resource path="res://optionback.png" type="Texture" id=8]
+[ext_resource path="res://BouncyText.gd" type="Script" id=9]
+[ext_resource path="res://Game.gd" type="Script" id=10]
+[ext_resource path="res://Option.gd" type="Script" id=11]
+
+[sub_resource type="DynamicFont" id=1]
+size = 50
+outline_size = 3
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 60
+outline_size = 3
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 25
+outline_size = 3
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 35
+outline_size = 3
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 25
+outline_size = 2
+outline_color = Color( 0.0941176, 0.0627451, 0, 1 )
+font_data = ExtResource( 4 )
+
+[node name="Node" type="Node2D"]
+script = ExtResource( 6 )
+
+[node name="Gift" type="Node" parent="."]
+script = ExtResource( 1 )
+__meta__ = {
+"_editor_icon": ExtResource( 2 )
+}
+get_images = true
+
+[node name="Game" type="CanvasLayer" parent="."]
+script = ExtResource( 10 )
+
+[node name="ChatContainer" type="VBoxContainer" parent="Game"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Chat" type="Panel" parent="Game/ChatContainer"]
+show_behind_parent = true
+margin_right = 1024.0
+margin_bottom = 572.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Game/ChatContainer/Chat"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = 10.0
+margin_right = -10.0
+margin_bottom = -10.0
+follow_focus = true
+scroll_horizontal_enabled = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ChatMessagesContainer" type="VBoxContainer" parent="Game/ChatContainer/Chat/ScrollContainer"]
+margin_right = 1004.0
+margin_bottom = 552.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Game/ChatContainer"]
+margin_top = 576.0
+margin_right = 1024.0
+margin_bottom = 600.0
+
+[node name="LineEdit" type="LineEdit" parent="Game/ChatContainer/HBoxContainer"]
+margin_right = 920.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+caret_blink = true
+caret_blink_speed = 0.5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="Game/ChatContainer/HBoxContainer"]
+margin_left = 924.0
+margin_right = 1024.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 100, 0 )
+text = "Send"
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TurnTimer" type="Label" parent="Game"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -238.0
+margin_top = 5.99999
+margin_right = 12.0
+margin_bottom = 146.0
+rect_rotation = 12.5456
+rect_pivot_offset = Vector2( 125, 70 )
+custom_fonts/font = SubResource( 1 )
+text = "15"
+align = 1
+valign = 1
+clip_text = true
+script = ExtResource( 9 )
+
+[node name="Score" type="Label" parent="Game"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -573.0
+margin_top = 17.0
+margin_right = -153.0
+margin_bottom = 137.0
+rect_rotation = -5.38083
+rect_pivot_offset = Vector2( 210, 60 )
+custom_fonts/font = SubResource( 2 )
+text = "0/0"
+align = 1
+valign = 1
+clip_text = true
+script = ExtResource( 9 )
+
+[node name="Message" type="Label" parent="Game"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -486.0
+margin_top = 367.0
+margin_right = 494.0
+margin_bottom = 507.0
+rect_pivot_offset = Vector2( 490, 20 )
+custom_fonts/font = SubResource( 3 )
+align = 1
+autowrap = true
+script = ExtResource( 9 )
+
+[node name="Flag" type="TextureRect" parent="Game"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -203.0
+margin_top = -210.5
+margin_right = 203.0
+margin_bottom = 59.5
+rect_pivot_offset = Vector2( 203, 135 )
+expand = true
+stretch_mode = 6
+script = ExtResource( 7 )
+
+[node name="Option1" type="TextureRect" parent="Game"]
+margin_left = 1.0
+margin_top = 332.0
+margin_right = 274.0
+margin_bottom = 446.0
+texture = ExtResource( 8 )
+expand = true
+script = ExtResource( 11 )
+
+[node name="Votes" type="Label" parent="Game/Option1"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -102.5
+margin_top = 101.0
+margin_right = 97.5
+margin_bottom = 161.0
+rect_pivot_offset = Vector2( 100, 30 )
+custom_fonts/font = SubResource( 4 )
+align = 1
+valign = 1
+autowrap = true
+script = ExtResource( 9 )
+
+[node name="Option" type="Label" parent="Game/Option1"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -149.5
+margin_top = 14.0
+margin_right = 151.5
+margin_bottom = 103.0
+custom_fonts/font = SubResource( 5 )
+align = 1
+valign = 1
+autowrap = true
+script = ExtResource( 9 )
+
+[node name="Option2" type="TextureRect" parent="Game"]
+margin_left = 244.0
+margin_top = 425.0
+margin_right = 517.0
+margin_bottom = 539.0
+texture = ExtResource( 8 )
+expand = true
+script = ExtResource( 11 )
+
+[node name="Votes" type="Label" parent="Game/Option2"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -102.5
+margin_top = 101.0
+margin_right = 97.5
+margin_bottom = 161.0
+rect_pivot_offset = Vector2( 100, 30 )
+custom_fonts/font = SubResource( 4 )
+align = 1
+valign = 1
+autowrap = true
+script = ExtResource( 9 )
+
+[node name="Option" type="Label" parent="Game/Option2"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -149.5
+margin_top = 14.0
+margin_right = 151.5
+margin_bottom = 103.0
+custom_fonts/font = SubResource( 5 )
+align = 1
+valign = 1
+autowrap = true
+script = ExtResource( 9 )
+
+[node name="Option3" type="TextureRect" parent="Game"]
+margin_left = 521.0
+margin_top = 424.0
+margin_right = 794.0
+margin_bottom = 538.0
+texture = ExtResource( 8 )
+expand = true
+script = ExtResource( 11 )
+
+[node name="Votes" type="Label" parent="Game/Option3"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -102.5
+margin_top = 101.0
+margin_right = 97.5
+margin_bottom = 161.0
+rect_pivot_offset = Vector2( 100, 30 )
+custom_fonts/font = SubResource( 4 )
+align = 1
+valign = 1
+autowrap = true
+script = ExtResource( 9 )
+
+[node name="Option" type="Label" parent="Game/Option3"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -149.5
+margin_top = 14.0
+margin_right = 151.5
+margin_bottom = 103.0
+custom_fonts/font = SubResource( 5 )
+align = 1
+valign = 1
+autowrap = true
+script = ExtResource( 9 )
+
+[node name="Option4" type="TextureRect" parent="Game"]
+margin_left = 756.0
+margin_top = 329.0
+margin_right = 1029.0
+margin_bottom = 443.0
+texture = ExtResource( 8 )
+expand = true
+script = ExtResource( 11 )
+
+[node name="Votes" type="Label" parent="Game/Option4"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -102.5
+margin_top = 101.0
+margin_right = 97.5
+margin_bottom = 161.0
+rect_pivot_offset = Vector2( 100, 30 )
+custom_fonts/font = SubResource( 4 )
+align = 1
+valign = 1
+autowrap = true
+script = ExtResource( 9 )
+
+[node name="Option" type="Label" parent="Game/Option4"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -149.5
+margin_top = 14.0
+margin_right = 151.5
+margin_bottom = 103.0
+custom_fonts/font = SubResource( 5 )
+align = 1
+valign = 1
+autowrap = true
+script = ExtResource( 9 )
