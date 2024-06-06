@@ -2,19 +2,19 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/algeria.png-6d022a49fe9e0cc8603fb647429656ac.stex"
+path="res://.import/Algeria.png-55e1311985801b67d23ea2f139f2f6ee.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://flags/algeria.png"
-dest_files=[ "res://.import/algeria.png-6d022a49fe9e0cc8603fb647429656ac.stex" ]
+source_file="res://flags/Algeria.png"
+dest_files=[ "res://.import/Algeria.png-55e1311985801b67d23ea2f139f2f6ee.stex" ]
 
 [params]
 
-compress/mode=0
+compress/mode=1
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0

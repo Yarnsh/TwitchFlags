@@ -30,3 +30,18 @@ func _process(delta):
 		rect_position = start_pos
 	
 	move_timer -= delta
+
+func SetNormalColoring():
+	self_modulate = Color.cornflower
+	modulate = Color.white
+	
+func SetFadedColoring():
+	modulate = Color.gray
+
+func SetCorrectColoring():
+	self_modulate = Color.chartreuse
+	modulate = Color.white
+
+func SetWrongColoring():
+	self_modulate = Color.crimson
+	modulate = Color.gray

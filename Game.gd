@@ -1,7 +1,11 @@
-extends CanvasLayer
+extends Node2D
 
 onready var turn_timer = $TurnTimer
+onready var score = $Score
+onready var message = $Message
+onready var startup = $Startup
 onready var flag = $Flag
+onready var channel = $Channel
 onready var opt1 = $Option1
 onready var opt2 = $Option2
 onready var opt3 = $Option3
@@ -12,25 +16,75 @@ var questions_asked = 0
 var correct_answers = 0
 var vote_counts = [[], [], [], []]
 var correct_vote = 0
+var state = 0
+var until_next_state = -1.0
+
+const timer_time = 20.0
+const between_questions_time = 4.0
 
 func _ready():
 	randomize()
+	StartNewGame()
 
 func _process(delta):
-	if Input.is_action_just_pressed("ui_accept"):
-		PickNewQuestion()
+	until_next_state -= delta
+	if state == 1:
+		turn_timer.SetText(str(int(until_next_state + 1.0)))
+		if until_next_state <= 0.0:
+			CheckAnswer()
+			state = 2
+			until_next_state = between_questions_time
+	elif state == 2:
+		turn_timer.SetText("0")
+		if until_next_state <= 0.0:
+			PickNewQuestion()
+			state = 1
+			until_next_state = timer_time
+	
+	score.SetText(str(correct_answers) + "/" + str(questions_asked))
+
+func SetChannel(channel_name):
+	channel.SetText("Playing with: "+channel_name)
 
 func StartNewGame():
 	PickNewQuestion()
 	questions_asked = 0
 	correct_answers = 0
-	# TODO reset score and start timer here
+	state = 0
+	until_next_state = 9999.9
+	startup.StartCount()
 
 func CheckAnswer():
-	pass # TODO count up vote, update score, show message and color options, pick new question
+	questions_asked += 1
+	var answer = 0
+	var max_votes = 0
+	var tie = false
+	for i in [0, 1, 2, 3]:
+		if len(vote_counts[i]) > max_votes:
+			max_votes = len(vote_counts[i])
+			answer = i
+			tie = false
+		elif len(vote_counts[i]) == max_votes:
+			tie = true
+	
+	for opt in opts:
+		opt.SetFadedColoring()
+	opts[correct_vote].SetCorrectColoring()
+	if answer == correct_vote and !tie:
+		correct_answers += 1
+		message.SetText("Correct! It was "+opts[correct_vote].option.text+"!") # TODO: pick random positive word as prefix
+	else:
+		if tie:
+			message.SetText("Ties won't count! It was "+opts[correct_vote].option.text+"!")
+		else:
+			opts[answer].SetWrongColoring()
+			message.SetText("WRONG! It was "+opts[correct_vote].option.text+"!") # TODO: pick random negative
+	# TODO apply color to options
 
 func PickNewQuestion():
 	vote_counts = [[], [], [], []]
+	for opt in opts:
+		opt.SetNormalColoring()
 	
 	var flag_count = len(Flags.names_list)
 	# TODO: handle if there are less than 4 flags available, if we want to generalize this
@@ -50,6 +104,7 @@ func PickNewQuestion():
 	flag.SetFlag(Flags.name_to_flag[options[correct_vote]])
 	
 	SetOptions(options)
+	message.SetText("What's this?")
 
 func SetOptions(options):
 	opt1.SetOption(options[0], 0.0)
@@ -58,6 +113,8 @@ func SetOptions(options):
 	opt4.SetOption(options[3], 0.75)
 
 func ProcessMessage(src, msg):
+	if state != 1:
+		return
 	if !msg.is_valid_integer():
 		return
 	var vote = int(msg)

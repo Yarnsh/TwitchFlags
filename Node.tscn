@@ -1,153 +1,161 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Gift.gd" type="Script" id=1]
 [ext_resource path="res://addons/gift/icon.png" type="Texture" id=2]
-[ext_resource path="res://Button.gd" type="Script" id=3]
+[ext_resource path="res://Control.gd" type="Script" id=3]
 [ext_resource path="res://SeymourOne-Regular.ttf" type="DynamicFontData" id=4]
-[ext_resource path="res://ChatContainer.gd" type="Script" id=5]
+[ext_resource path="res://Setup.gd" type="Script" id=5]
 [ext_resource path="res://Node.gd" type="Script" id=6]
 [ext_resource path="res://Flag.gd" type="Script" id=7]
 [ext_resource path="res://optionback.png" type="Texture" id=8]
 [ext_resource path="res://BouncyText.gd" type="Script" id=9]
 [ext_resource path="res://Game.gd" type="Script" id=10]
 [ext_resource path="res://Option.gd" type="Script" id=11]
+[ext_resource path="res://Startup.gd" type="Script" id=12]
+
+[sub_resource type="Gradient" id=6]
+colors = PoolColorArray( 0.660452, 0.334534, 0.792969, 1, 0.48306, 0.129593, 0.582031, 1 )
+
+[sub_resource type="GradientTexture2D" id=7]
+gradient = SubResource( 6 )
+width = 1024
+height = 600
+fill = 1
 
 [sub_resource type="DynamicFont" id=1]
-size = 50
+size = 60
 outline_size = 3
 outline_color = Color( 0, 0, 0, 1 )
+use_filter = true
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=13]
+size = 20
+outline_size = 3
+outline_color = Color( 0, 0, 0, 1 )
+use_filter = true
 font_data = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=2]
 size = 60
 outline_size = 3
 outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 4 )
-
-[sub_resource type="DynamicFont" id=3]
-size = 25
-outline_size = 3
-outline_color = Color( 0, 0, 0, 1 )
+use_filter = true
 font_data = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=4]
 size = 35
 outline_size = 3
 outline_color = Color( 0, 0, 0, 1 )
+use_filter = true
 font_data = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=5]
 size = 25
 outline_size = 2
 outline_color = Color( 0.0941176, 0.0627451, 0, 1 )
+use_filter = true
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=8]
+size = 19
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
+use_filter = true
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 25
+outline_size = 3
+outline_color = Color( 0, 0, 0, 1 )
+use_filter = true
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=12]
+size = 200
+outline_size = 13
+outline_color = Color( 0, 0, 0, 1 )
+use_filter = true
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=9]
+size = 30
+outline_size = 3
+outline_color = Color( 0, 0, 0, 1 )
+use_filter = true
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=10]
+size = 60
+outline_size = 3
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=11]
+size = 27
+outline_size = 3
+outline_color = Color( 0, 0, 0, 1 )
+use_filter = true
 font_data = ExtResource( 4 )
 
 [node name="Node" type="Node2D"]
 script = ExtResource( 6 )
 
 [node name="Gift" type="Node" parent="."]
+pause_mode = 2
 script = ExtResource( 1 )
 __meta__ = {
 "_editor_icon": ExtResource( 2 )
 }
 get_images = true
 
-[node name="Game" type="CanvasLayer" parent="."]
-script = ExtResource( 10 )
-
-[node name="ChatContainer" type="VBoxContainer" parent="Game"]
-visible = false
+[node name="TextureRect" type="TextureRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-script = ExtResource( 5 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Chat" type="Panel" parent="Game/ChatContainer"]
-show_behind_parent = true
-margin_right = 1024.0
-margin_bottom = 572.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="ScrollContainer" type="ScrollContainer" parent="Game/ChatContainer/Chat"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 10.0
-margin_top = 10.0
-margin_right = -10.0
-margin_bottom = -10.0
-follow_focus = true
-scroll_horizontal_enabled = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="ChatMessagesContainer" type="VBoxContainer" parent="Game/ChatContainer/Chat/ScrollContainer"]
-margin_right = 1004.0
-margin_bottom = 552.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-custom_constants/separation = 6
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Game/ChatContainer"]
-margin_top = 576.0
 margin_right = 1024.0
 margin_bottom = 600.0
+texture = SubResource( 7 )
 
-[node name="LineEdit" type="LineEdit" parent="Game/ChatContainer/HBoxContainer"]
-margin_right = 920.0
-margin_bottom = 24.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-caret_blink = true
-caret_blink_speed = 0.5
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Button" type="Button" parent="Game/ChatContainer/HBoxContainer"]
-margin_left = 924.0
-margin_right = 1024.0
-margin_bottom = 24.0
-rect_min_size = Vector2( 100, 0 )
-text = "Send"
-script = ExtResource( 3 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Game" type="Node2D" parent="."]
+visible = false
+script = ExtResource( 10 )
 
 [node name="TurnTimer" type="Label" parent="Game"]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -238.0
-margin_top = 5.99999
-margin_right = 12.0
-margin_bottom = 146.0
-rect_rotation = 12.5456
+margin_left = 777.0
+margin_top = 60.0
+margin_right = 1027.0
+margin_bottom = 200.0
 rect_pivot_offset = Vector2( 125, 70 )
 custom_fonts/font = SubResource( 1 )
-text = "15"
+text = "20"
 align = 1
 valign = 1
 clip_text = true
 script = ExtResource( 9 )
 
+[node name="Channel" type="Label" parent="Game"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -22.0
+margin_top = -48.0
+margin_right = 1035.0
+margin_bottom = 92.0
+rect_pivot_offset = Vector2( 125, 70 )
+custom_fonts/font = SubResource( 13 )
+text = "Playing with: "
+align = 1
+valign = 1
+script = ExtResource( 9 )
+
 [node name="Score" type="Label" parent="Game"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -573.0
-margin_top = 17.0
-margin_right = -153.0
-margin_bottom = 137.0
-rect_rotation = -5.38083
+margin_left = -70.0
+margin_top = 60.0
+margin_right = 350.0
+margin_bottom = 180.0
 rect_pivot_offset = Vector2( 210, 60 )
 custom_fonts/font = SubResource( 2 )
 text = "0/0"
@@ -156,28 +164,15 @@ valign = 1
 clip_text = true
 script = ExtResource( 9 )
 
-[node name="Message" type="Label" parent="Game"]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -486.0
-margin_top = 367.0
-margin_right = 494.0
-margin_bottom = 507.0
-rect_pivot_offset = Vector2( 490, 20 )
-custom_fonts/font = SubResource( 3 )
-align = 1
-autowrap = true
-script = ExtResource( 9 )
-
 [node name="Flag" type="TextureRect" parent="Game"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -203.0
-margin_top = -210.5
-margin_right = 203.0
-margin_bottom = 59.5
+margin_left = 317.0
+margin_top = 67.0
+margin_right = 723.0
+margin_bottom = 337.0
 rect_pivot_offset = Vector2( 203, 135 )
 expand = true
 stretch_mode = 6
@@ -209,10 +204,10 @@ script = ExtResource( 9 )
 [node name="Option" type="Label" parent="Game/Option1"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -149.5
-margin_top = 14.0
-margin_right = 151.5
-margin_bottom = 103.0
+margin_left = -135.5
+margin_top = 10.0
+margin_right = 146.5
+margin_bottom = 107.0
 custom_fonts/font = SubResource( 5 )
 align = 1
 valign = 1
@@ -247,7 +242,7 @@ anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -149.5
 margin_top = 14.0
-margin_right = 151.5
+margin_right = 135.5
 margin_bottom = 103.0
 custom_fonts/font = SubResource( 5 )
 align = 1
@@ -281,7 +276,7 @@ script = ExtResource( 9 )
 [node name="Option" type="Label" parent="Game/Option3"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -149.5
+margin_left = -139.5
 margin_top = 14.0
 margin_right = 151.5
 margin_bottom = 103.0
@@ -317,12 +312,116 @@ script = ExtResource( 9 )
 [node name="Option" type="Label" parent="Game/Option4"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -149.5
+margin_left = -160.5
 margin_top = 14.0
-margin_right = 151.5
+margin_right = 128.5
 margin_bottom = 103.0
 custom_fonts/font = SubResource( 5 )
 align = 1
 valign = 1
 autowrap = true
 script = ExtResource( 9 )
+
+[node name="Explainer" type="Label" parent="Game"]
+margin_left = 6.0
+margin_top = 230.0
+margin_right = 244.0
+margin_bottom = 311.0
+rect_rotation = -8.62634
+custom_fonts/font = SubResource( 8 )
+text = "Type 1, 2, 3, or 4 to cast your vote!"
+autowrap = true
+
+[node name="Message" type="Label" parent="Game"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = 264.0
+margin_top = 352.0
+margin_right = 763.0
+margin_bottom = 494.0
+rect_pivot_offset = Vector2( 253, 66 )
+custom_fonts/font = SubResource( 3 )
+align = 1
+autowrap = true
+script = ExtResource( 9 )
+
+[node name="Startup" type="ColorRect" parent="Game"]
+visible = false
+margin_right = 1037.0
+margin_bottom = 608.0
+color = Color( 0, 0, 0, 0.72549 )
+script = ExtResource( 12 )
+
+[node name="StartupCount" type="Label" parent="Game/Startup"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -326.5
+margin_top = 169.0
+margin_right = 328.5
+margin_bottom = 421.0
+rect_pivot_offset = Vector2( 335, 124 )
+custom_fonts/font = SubResource( 12 )
+text = "3"
+align = 1
+autowrap = true
+script = ExtResource( 9 )
+
+[node name="Setup" type="Control" parent="."]
+script = ExtResource( 5 )
+
+[node name="LineEdit" type="LineEdit" parent="Setup"]
+margin_left = 222.0
+margin_top = 183.0
+margin_right = 822.0
+margin_bottom = 241.0
+custom_fonts/font = SubResource( 9 )
+placeholder_text = "Channel name goes here"
+placeholder_alpha = 0.215
+
+[node name="Button" type="Button" parent="Setup"]
+margin_left = 325.0
+margin_top = 438.0
+margin_right = 688.0
+margin_bottom = 529.0
+custom_fonts/font = SubResource( 10 )
+text = "START!"
+
+[node name="Label" type="Label" parent="Setup"]
+margin_left = 11.0
+margin_top = 137.0
+margin_right = 585.0
+margin_bottom = 172.0
+custom_fonts/font = SubResource( 11 )
+text = "Twitch channel to connect to:"
+
+[node name="Label2" type="Label" parent="Setup"]
+margin_left = 635.0
+margin_top = 323.0
+margin_right = 1137.0
+margin_bottom = 396.0
+rect_rotation = 12.1605
+custom_fonts/font = SubResource( 11 )
+text = "You can press \"P\" to pause the game!"
+autowrap = true
+
+[node name="Label3" type="Label" parent="Setup"]
+margin_left = 12.0001
+margin_top = 433.0
+margin_right = 393.0
+margin_bottom = 506.0
+rect_rotation = -16.3092
+custom_fonts/font = SubResource( 11 )
+text = "You can press \"R\" to reset the game!"
+autowrap = true
+
+[node name="Control" type="ColorRect" parent="."]
+pause_mode = 2
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 1028.0
+margin_bottom = 607.0
+color = Color( 0, 0, 0, 0.556863 )
+script = ExtResource( 3 )
+
+[connection signal="pressed" from="Setup/Button" to="Setup" method="_on_Button_pressed"]

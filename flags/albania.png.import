@@ -2,19 +2,19 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/albania.png-4692a9d434f8e548da8291aad1a52f45.stex"
+path="res://.import/Albania.png-cbe1f34ca8e209febc44f86b32aac5ed.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://flags/albania.png"
-dest_files=[ "res://.import/albania.png-4692a9d434f8e548da8291aad1a52f45.stex" ]
+source_file="res://flags/Albania.png"
+dest_files=[ "res://.import/Albania.png-cbe1f34ca8e209febc44f86b32aac5ed.stex" ]
 
 [params]
 
-compress/mode=0
+compress/mode=1
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0

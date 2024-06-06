@@ -2,19 +2,19 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/argentina.png-49c4e9f8013a13732f342950f7c81a7c.stex"
+path="res://.import/Argentina.png-681407ea3a0d2fa69c91f6e157d06247.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://flags/argentina.png"
-dest_files=[ "res://.import/argentina.png-49c4e9f8013a13732f342950f7c81a7c.stex" ]
+source_file="res://flags/Argentina.png"
+dest_files=[ "res://.import/Argentina.png-681407ea3a0d2fa69c91f6e157d06247.stex" ]
 
 [params]
 
-compress/mode=0
+compress/mode=1
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0

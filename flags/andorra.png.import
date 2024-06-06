@@ -2,19 +2,19 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/andorra.png-373f4cbf3b3803e6d420643a3436cf77.stex"
+path="res://.import/Andorra.png-4af2e101c8e32f10b305ef4cfed00288.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://flags/andorra.png"
-dest_files=[ "res://.import/andorra.png-373f4cbf3b3803e6d420643a3436cf77.stex" ]
+source_file="res://flags/Andorra.png"
+dest_files=[ "res://.import/Andorra.png-4af2e101c8e32f10b305ef4cfed00288.stex" ]
 
 [params]
 
-compress/mode=0
+compress/mode=1
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0

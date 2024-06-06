@@ -2,19 +2,19 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/azerbaijan.png-c32bc93e1e7b6fa8b1e68bee18f8b19c.stex"
+path="res://.import/Azerbaijan.png-12983898dcff3abd183ddd1cd1a27ff5.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://flags/azerbaijan.png"
-dest_files=[ "res://.import/azerbaijan.png-c32bc93e1e7b6fa8b1e68bee18f8b19c.stex" ]
+source_file="res://flags/Azerbaijan.png"
+dest_files=[ "res://.import/Azerbaijan.png-12983898dcff3abd183ddd1cd1a27ff5.stex" ]
 
 [params]
 
-compress/mode=0
+compress/mode=1
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0

@@ -2,19 +2,19 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/austria.png-49d8d56c51cc8a9f2f8bbcf0416301cf.stex"
+path="res://.import/Austria.png-c71137f29c59873f4aa238e26426647b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://flags/austria.png"
-dest_files=[ "res://.import/austria.png-49d8d56c51cc8a9f2f8bbcf0416301cf.stex" ]
+source_file="res://flags/Austria.png"
+dest_files=[ "res://.import/Austria.png-c71137f29c59873f4aa238e26426647b.stex" ]
 
 [params]
 
-compress/mode=0
+compress/mode=1
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0

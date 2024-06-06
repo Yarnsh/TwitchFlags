@@ -2,19 +2,19 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/australia.png-6b5d85a283c3692d01d48c48e89159b4.stex"
+path="res://.import/Australia.png-0e49ac5d254a5c046c72124454908556.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://flags/australia.png"
-dest_files=[ "res://.import/australia.png-6b5d85a283c3692d01d48c48e89159b4.stex" ]
+source_file="res://flags/Australia.png"
+dest_files=[ "res://.import/Australia.png-0e49ac5d254a5c046c72124454908556.stex" ]
 
 [params]
 
-compress/mode=0
+compress/mode=1
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0

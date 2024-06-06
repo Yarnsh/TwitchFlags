@@ -2,19 +2,19 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/antigua_and_barbuda.svg.png-7473d584bee44939b264c2e3b5fe2492.stex"
+path="res://.import/Antigua_and_Barbuda.svg.png-93dd1011abf19a3cd2bb8b531d6c993f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://flags/antigua_and_barbuda.svg.png"
-dest_files=[ "res://.import/antigua_and_barbuda.svg.png-7473d584bee44939b264c2e3b5fe2492.stex" ]
+source_file="res://flags/Antigua_and_Barbuda.svg.png"
+dest_files=[ "res://.import/Antigua_and_Barbuda.svg.png-93dd1011abf19a3cd2bb8b531d6c993f.stex" ]
 
 [params]
 
-compress/mode=0
+compress/mode=1
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
