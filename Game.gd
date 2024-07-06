@@ -6,7 +6,7 @@ onready var message = $Message
 onready var startup = $Startup
 onready var flag = $Flag
 onready var channel = $Channel
-onready var opt1 = $Option1
+onready var opt1 = $Option
 onready var opt2 = $Option2
 onready var opt3 = $Option3
 onready var opt4 = $Option4
@@ -72,13 +72,13 @@ func CheckAnswer():
 	opts[correct_vote].SetCorrectColoring()
 	if answer == correct_vote and !tie:
 		correct_answers += 1
-		message.SetText("Correct! It was "+opts[correct_vote].option.text+"!") # TODO: pick random positive word as prefix
+		message.SetText("Correct! It was "+opts[correct_vote].GetOptionText()+"!") # TODO: pick random positive word as prefix
 	else:
 		if tie:
-			message.SetText("Ties won't count! It was "+opts[correct_vote].option.text+"!")
+			message.SetText("Ties won't count! It was "+opts[correct_vote].GetOptionText()+"!")
 		else:
 			opts[answer].SetWrongColoring()
-			message.SetText("WRONG! It was "+opts[correct_vote].option.text+"!") # TODO: pick random negative
+			message.SetText("WRONG! It was "+opts[correct_vote].GetOptionText()+"!") # TODO: pick random negative
 	# TODO apply color to options
 
 func PickNewQuestion():
@@ -101,7 +101,7 @@ func PickNewQuestion():
 		idx += 1
 	
 	correct_vote = randi() % 4
-	flag.SetFlag(Flags.name_to_flag[options[correct_vote]])
+	flag.SetFlag(Flags.GetFlag(options[correct_vote]))
 	
 	SetOptions(options)
 	message.SetText("What's this?")
@@ -115,9 +115,24 @@ func SetOptions(options):
 func ProcessMessage(src, msg):
 	if state != 1:
 		return
-	if !msg.is_valid_integer():
-		return
-	var vote = int(msg)
+	var vote = 0
+	if msg.is_valid_integer():
+		vote = int(msg)
+	else:
+		if msg.to_lower() == "one":
+			vote = 1
+		elif msg.to_lower() == "two":
+			vote = 2
+		elif msg.to_lower() == "three":
+			vote = 3
+		elif msg.to_lower() == "four":
+			vote = 4
+		elif msg.to_lower() == "five":
+			vote = 5
+	
+	if vote == 5:
+		pass # easter egg here
+	
 	if vote < 1 or vote > 4:
 		return
 	

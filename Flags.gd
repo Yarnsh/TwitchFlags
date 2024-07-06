@@ -1,6 +1,7 @@
 extends Node
 
 var name_to_flag = {}
+var name_to_path = {}
 var names_list = []
 
 func _ready():
@@ -9,8 +10,17 @@ func _ready():
 		var flag_name = (flag_path.get_file()).split(".")[0]
 		flag_name = flag_name.split("_").join(" ")
 		names_list.append(flag_name)
-		name_to_flag[flag_name] = load(flag_path)
+		#name_to_flag[flag_name] = load(flag_path)
+		name_to_flag[flag_name] = null # lazy load these to improve startup time
+		name_to_path[flag_name] = flag_path
 	print(names_list)
+
+func GetFlag(flag_name):
+	var result = name_to_flag[flag_name]
+	if result == null:
+		result = load(name_to_path[flag_name])
+		name_to_flag[flag_name] = result
+	return result
 
 func _find_png_paths() -> Array:
 	var png_paths := [] # accumulated png paths to return
