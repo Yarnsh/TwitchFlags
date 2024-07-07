@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://Gift.gd" type="Script" id=1]
 [ext_resource path="res://addons/gift/icon.png" type="Texture" id=2]
@@ -7,11 +7,12 @@
 [ext_resource path="res://Setup.gd" type="Script" id=5]
 [ext_resource path="res://Node.gd" type="Script" id=6]
 [ext_resource path="res://Flag.gd" type="Script" id=7]
-[ext_resource path="res://flags/Albania.png" type="Texture" id=8]
+[ext_resource path="res://flags/Countries_of_the_World/Albania.png" type="Texture" id=8]
 [ext_resource path="res://BouncyText.gd" type="Script" id=9]
 [ext_resource path="res://Game.gd" type="Script" id=10]
 [ext_resource path="res://Option.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Startup.gd" type="Script" id=12]
+[ext_resource path="res://arrow_down.png" type="Texture" id=13]
 
 [sub_resource type="Gradient" id=6]
 colors = PoolColorArray( 0.0877161, 0.072876, 0.09375, 1, 0.141073, 0.128723, 0.144531, 1 )
@@ -44,7 +45,7 @@ corner_radius_bottom_right = 90
 corner_radius_bottom_left = 90
 
 [sub_resource type="DynamicFont" id=2]
-size = 47
+size = 38
 outline_size = 2
 outline_color = Color( 0.976471, 0.741176, 1, 1 )
 use_filter = true
@@ -160,21 +161,22 @@ margin_bottom = 85.0
 rect_scale = Vector2( 5.32, 1 )
 custom_styles/panel = SubResource( 18 )
 
-[node name="title" type="Label" parent="Game"]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = 71.0
-margin_top = 13.0
-margin_right = 819.0
-margin_bottom = 91.0
-rect_pivot_offset = Vector2( 210, 60 )
+[node name="SetSelection" type="OptionButton" parent="Game"]
+margin_left = 106.0
+margin_top = 26.0
+margin_right = 858.0
+margin_bottom = 81.0
+focus_mode = 0
+custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
+custom_colors/font_color_focus = Color( 0, 0, 0, 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color_hover = Color( 0, 0, 0, 1 )
+custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 2 )
-text = "FLAG GANG 4 LYFE"
-align = 1
-valign = 1
-clip_text = true
-script = ExtResource( 9 )
+custom_icons/arrow = ExtResource( 13 )
+enabled_focus_mode = 0
+text = "The thing stuff"
+flat = true
 
 [node name="Score" type="Label" parent="Game"]
 anchor_left = 0.5
@@ -321,10 +323,10 @@ script = ExtResource( 9 )
 script = ExtResource( 5 )
 
 [node name="LineEdit" type="LineEdit" parent="Setup"]
-margin_left = 222.0
-margin_top = 183.0
-margin_right = 822.0
-margin_bottom = 241.0
+margin_left = 203.0
+margin_top = 76.0
+margin_right = 803.0
+margin_bottom = 134.0
 custom_fonts/font = SubResource( 9 )
 placeholder_text = "Channel name goes here"
 placeholder_alpha = 0.215
@@ -338,12 +340,20 @@ custom_fonts/font = SubResource( 10 )
 text = "START!"
 
 [node name="Label" type="Label" parent="Setup"]
-margin_left = 11.0
-margin_top = 137.0
-margin_right = 585.0
-margin_bottom = 172.0
+margin_left = 1.0
+margin_top = 27.0
+margin_right = 575.0
+margin_bottom = 62.0
 custom_fonts/font = SubResource( 11 )
 text = "Twitch channel to connect to:"
+
+[node name="Label4" type="Label" parent="Setup"]
+margin_left = 17.0
+margin_top = 189.0
+margin_right = 591.0
+margin_bottom = 224.0
+custom_fonts/font = SubResource( 11 )
+text = "Flags to guess:"
 
 [node name="Label2" type="Label" parent="Setup"]
 margin_left = 635.0
@@ -364,6 +374,14 @@ rect_rotation = -16.3092
 custom_fonts/font = SubResource( 11 )
 text = "You can press \"R\" to reset the game!"
 autowrap = true
+
+[node name="SetSelection" type="OptionButton" parent="Setup"]
+margin_left = 182.0
+margin_top = 232.0
+margin_right = 850.0
+margin_bottom = 291.0
+custom_fonts/font = SubResource( 11 )
+text = "test"
 
 [node name="Control" type="ColorRect" parent="."]
 pause_mode = 2

@@ -11,6 +11,7 @@ onready var opt2 = $Option2
 onready var opt3 = $Option3
 onready var opt4 = $Option4
 onready var opts = [opt1, opt2, opt3, opt4]
+onready var set_selection = $SetSelection
 
 var questions_asked = 0
 var correct_answers = 0
@@ -24,7 +25,13 @@ const between_questions_time = 4.0
 
 func _ready():
 	randomize()
+	for set_name in Flags.name_to_flag_set.keys():
+		set_selection.add_item(set_name)
+	set_selection.select(0)
 	StartNewGame()
+
+func SetFlagSet(idx):
+	set_selection.select(idx)
 
 func _process(delta):
 	until_next_state -= delta
@@ -86,7 +93,7 @@ func PickNewQuestion():
 	for opt in opts:
 		opt.SetNormalColoring()
 	
-	var flag_count = len(Flags.names_list)
+	var flag_count = len(Flags.GetFlagNameList(set_selection.text))
 	# TODO: handle if there are less than 4 flags available, if we want to generalize this
 	var options_idx = []
 	var options = []
@@ -96,12 +103,12 @@ func PickNewQuestion():
 		while flag_idx in options_idx:
 			flag_idx = (flag_idx + 1) % flag_count
 		options_idx.append(flag_idx)
-		options.append(Flags.names_list[flag_idx])
+		options.append(Flags.GetFlagNameList(set_selection.text)[flag_idx])
 		
 		idx += 1
 	
 	correct_vote = randi() % 4
-	flag.SetFlag(Flags.GetFlag(options[correct_vote]))
+	flag.SetFlag(Flags.GetFlag(set_selection.text, options[correct_vote]))
 	
 	SetOptions(options)
 	message.SetText("What's this?")
