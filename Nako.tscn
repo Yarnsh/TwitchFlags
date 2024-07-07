@@ -54,6 +54,5 @@ animations = [ {
 [node name="Nako" type="AnimatedSprite"]
 z_index = 10
 frames = SubResource( 29 )
-frame = 1
 playing = true
 script = ExtResource( 2 )

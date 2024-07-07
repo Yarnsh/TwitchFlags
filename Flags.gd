@@ -2,6 +2,8 @@ extends Node
 
 var name_to_flag_set = {}
 
+signal new_flag_set
+
 class FlagSet:
 	var name_to_flag = {}
 	var name_to_path = {}
@@ -11,24 +13,38 @@ func _ready():
 	var dirs = _find_dir_paths("res://flags")
 	
 	for dir_name in dirs:
-		var flag_set = FlagSet.new()
-		var paths = _find_png_paths(dir_name)
-		for flag_path in paths:
-			var flag_name = (flag_path.get_file()).split(".")[0]
-			flag_name = flag_name.split("_").join(" ")
-			flag_set.names_list.append(flag_name)
-			flag_set.name_to_flag[flag_name] = null # lazy load these to improve startup time
-			flag_set.name_to_path[flag_name] = flag_path
-		var split_dir = dir_name.split("/")
-		var nice_name = split_dir[len(split_dir) - 1].split("_").join(" ")
-		name_to_flag_set[nice_name] = flag_set
-		print(flag_set.names_list)
+		LoadNewFlagSet(dir_name)
+
+func LoadNewFlagSet(dir_path):
+	var flag_set = FlagSet.new()
+	var paths = _find_png_paths(dir_path)
+	for flag_path in paths:
+		var flag_name = (flag_path.get_file()).split(".")[0]
+		flag_name = flag_name.split("_").join(" ")
+		flag_set.names_list.append(flag_name)
+		flag_set.name_to_flag[flag_name] = null # lazy load these to improve startup time
+		flag_set.name_to_path[flag_name] = flag_path
+	var split_dir = dir_path.split("/")
+	var nice_name = split_dir[len(split_dir) - 1].split("_").join(" ")
+	name_to_flag_set[nice_name] = flag_set
+	print(flag_set.names_list)
+	emit_signal("new_flag_set")
 
 func GetFlag(set_name, flag_name):
 	var result = name_to_flag_set[set_name].name_to_flag[flag_name]
 	if result == null:
-		result = load(name_to_flag_set[set_name].name_to_path[flag_name])
-		name_to_flag_set[set_name].name_to_flag[flag_name] = result
+		if name_to_flag_set[set_name].name_to_path[flag_name].begins_with("res://"):
+			result = load(name_to_flag_set[set_name].name_to_path[flag_name])
+			name_to_flag_set[set_name].name_to_flag[flag_name] = result
+		else:
+			var image = Image.new()
+			var err = image.load(name_to_flag_set[set_name].name_to_path[flag_name])
+			if err != OK:
+				print("loading failed, dunno what do")
+			result = ImageTexture.new()
+			result.create_from_image(image, 0)
+			name_to_flag_set[set_name].name_to_flag[flag_name] = result
+		
 	return result
 
 func GetFlagNameList(set_name):

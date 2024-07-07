@@ -22,7 +22,7 @@ var correct_vote = 0
 var state = 0
 var until_next_state = -1.0
 
-const timer_time = 20.0
+const timer_time = 15.0
 const between_questions_time = 4.0
 
 func _ready():

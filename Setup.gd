@@ -5,10 +5,15 @@ onready var game = $"../Game"
 onready var gift = $"../Gift"
 onready var set_selection = $SetSelection
 
-func _ready():
+func reload_options():
+	set_selection.clear()
 	for set_name in Flags.name_to_flag_set.keys():
 		set_selection.add_item(set_name)
 	set_selection.select(0)
+
+func _ready():
+	reload_options()
+	Flags.connect("new_flag_set", self, "reload_options")
 
 func _on_Button_pressed():
 	game.SetFlagSet(set_selection.get_selected_id())
