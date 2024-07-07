@@ -1,6 +1,8 @@
 extends Node2D
 
+export var nako_prefab : PackedScene
 onready var turn_timer = $TurnTimer
+onready var time_spinner = $TimeSpinner
 onready var score = $Score
 onready var message = $Message
 onready var startup = $Startup
@@ -86,7 +88,6 @@ func CheckAnswer():
 		else:
 			opts[answer].SetWrongColoring()
 			message.SetText("WRONG! It was "+opts[correct_vote].GetOptionText()+"!") # TODO: pick random negative
-	# TODO apply color to options
 
 func PickNewQuestion():
 	vote_counts = [[], [], [], []]
@@ -138,7 +139,8 @@ func ProcessMessage(src, msg):
 			vote = 5
 	
 	if vote == 5:
-		pass # easter egg here
+		var new_nako = nako_prefab.instance()
+		add_child(new_nako)
 	
 	if vote < 1 or vote > 4:
 		return

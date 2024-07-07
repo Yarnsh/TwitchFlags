@@ -3,10 +3,13 @@ extends Label
 var bounce_time = -1.0
 onready var start_rot = rect_rotation
 
+signal changed
+
 func SetText(new_text, force=false):
 	if text != new_text or force:
 		text = new_text
 		bounce_time = 0.1
+		emit_signal("changed")
 
 func _process(delta):
 	if bounce_time >= 0.06:

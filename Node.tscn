@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://Gift.gd" type="Script" id=1]
 [ext_resource path="res://addons/gift/icon.png" type="Texture" id=2]
@@ -13,6 +13,9 @@
 [ext_resource path="res://Option.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Startup.gd" type="Script" id=12]
 [ext_resource path="res://arrow_down.png" type="Texture" id=13]
+[ext_resource path="res://TimeSpinner.gd" type="Script" id=14]
+[ext_resource path="res://Time.png" type="Texture" id=15]
+[ext_resource path="res://Nako.tscn" type="PackedScene" id=16]
 
 [sub_resource type="Gradient" id=6]
 colors = PoolColorArray( 0.0877161, 0.072876, 0.09375, 1, 0.141073, 0.128723, 0.144531, 1 )
@@ -65,6 +68,7 @@ font_data = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=1]
 size = 60
+outline_size = 4
 outline_color = Color( 0, 0, 0, 1 )
 use_filter = true
 font_data = ExtResource( 4 )
@@ -137,6 +141,7 @@ texture = SubResource( 7 )
 [node name="Game" type="Node2D" parent="."]
 visible = false
 script = ExtResource( 10 )
+nako_prefab = ExtResource( 16 )
 
 [node name="Panel" type="Panel" parent="Game"]
 margin_left = 12.0
@@ -209,6 +214,13 @@ align = 1
 valign = 1
 clip_text = true
 script = ExtResource( 9 )
+
+[node name="TimeSpinner" type="Sprite" parent="Game"]
+position = Vector2( 891, 143 )
+rotation = 0.223925
+scale = Vector2( 0.4, 0.5 )
+texture = ExtResource( 15 )
+script = ExtResource( 14 )
 
 [node name="TurnTimer" type="Label" parent="Game"]
 anchor_left = 1.0
@@ -393,4 +405,5 @@ margin_bottom = 607.0
 color = Color( 0, 0, 0, 0.556863 )
 script = ExtResource( 3 )
 
+[connection signal="changed" from="Game/TurnTimer" to="Game/TimeSpinner" method="Spin"]
 [connection signal="pressed" from="Setup/Button" to="Setup" method="_on_Button_pressed"]
